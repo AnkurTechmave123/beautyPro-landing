@@ -1,4 +1,4 @@
-  <?php include "header.php" ?>
+<?php include "header.php" ?>
 <!-- Banner-Section-Start -->
   <section class="banner_section white_text">
     
@@ -176,7 +176,7 @@
               <h2>Smart Invoicing Made Simple</h2>
               <!-- p -->
               <p>
-                 Easily create, send, and manage invoices directly from the app. Keep track of paid and outstanding balances, organize client details, and attach services performed all in one place. With automated reminders and clear records, you’ll never lose track of payments again.
+                 Easily create, send, and manage invoices directly from the app. Keep track of paid and outstanding balances, organize client details, and attach services performed all in one place. With automated reminders and clear records, you'll never lose track of payments again.
               </p>
             </div>
           </div>
@@ -213,7 +213,7 @@
               <h2>All Your Customers in One Place</h2>
               <!-- p -->
               <p>
-               Keep track of every client with a complete profile that shows their total visits, last appointment, total spend, and detailed service history. With BeautySuite Pro, you’ll always have the right information at your fingertips to personalize experiences, build loyalty, and strengthen client relationships.
+               Keep track of every client with a complete profile that shows their total visits, last appointment, total spend, and detailed service history. With BeautySuite Pro, you'll always have the right information at your fingertips to personalize experiences, build loyalty, and strengthen client relationships.
               </p>
             </div>
           </div>
@@ -645,9 +645,9 @@
                     <span><i class="icofont-star"></i></span>
                   </div>
                 </div>
-                <p>“BeautySuite Pro has completely streamlined my bookings. 
+                <p>"BeautySuite Pro has completely streamlined my bookings. 
                   I no longer worry about missed appointments, and my clients 
-                  love how easy it is to reschedule online.”</p>
+                  love how easy it is to reschedule online."</p>
               </div>
 
               <div class="review_block" data-aos="fade-up" data-aos-duration="1500">
@@ -667,8 +667,8 @@
                     <span><i class="icofont-star"></i></span>
                   </div>
                 </div>
-                <p>“I especially love the pigment tracker and before/after gallery. 
-                  It helps me keep detailed records and show my clients the healed results.”</p>
+                <p>"I especially love the pigment tracker and before/after gallery. 
+                  It helps me keep detailed records and show my clients the healed results."</p>
               </div>
 
               <div class="review_block" data-aos="fade-up" data-aos-duration="1500">
@@ -688,8 +688,8 @@
                     <span><i class="icofont-star"></i></span>
                   </div>
                 </div>
-                <p>“Having everything in one app — from consent forms to revenue reports — 
-                  saves me hours every week. It’s a game-changer for salon management.”</p>
+                <p>"Having everything in one app — from consent forms to revenue reports — 
+                  saves me hours every week. It's a game-changer for salon management."</p>
               </div>
             </div>
 
@@ -763,7 +763,7 @@
                         </li>
                       </ul>
                       <div class="btn_block">
-                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -801,7 +801,7 @@
                         </li>
                       </ul>
                       <div class="btn_block white_btn">
-                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -838,7 +838,7 @@
                         </li>
                       </ul>
                       <div class="btn_block">
-                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -884,7 +884,7 @@
                     </ul>
 
                     <div class="btn_block">
-                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
 
@@ -923,7 +923,7 @@
                       </li>
                     </ul>
                     <div class="btn_block white_btn">
-                      <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                      <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                       <div class="btn_bottom"></div>
                     </div>
                   </div>
@@ -961,7 +961,7 @@
                     </ul>
                     
                     <div class="btn_block">
-                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                     </div>
                   </div>
