@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="css/checkout.css">
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
