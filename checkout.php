@@ -47,14 +47,7 @@
               </div>
               <div class="form-group">
                 <label for="state">State</label>
-                <select id="state" name="state" required>
-                  <option value="">Select state</option>
-                  <option value="AL">Alabama</option>
-                  <option value="CA">California</option>
-                  <option value="FL">Florida</option>
-                  <option value="NY">New York</option>
-                  <option value="TX">Texas</option>
-                </select>
+                 <input type="text" id="state" name="sate" placeholder="State" required>
               </div>
               <div class="form-group">
                 <label for="zipCode">Zip Code</label>
@@ -84,55 +77,32 @@
 
           <!-- Credit Card Form -->
           <div class="payment-form card-form active">
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="cardName">Name on Card</label>
-                <input type="text" id="cardName" name="cardName" placeholder="First & Last Name">
-              </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="cardNumber">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000">
-              </div>
-            </div>
-            
-            <div class="form-row two-col">
-              <div class="form-group">
-                <label for="expiry">Expiry</label>
-                <div class="expiry-inputs">
-                  <select id="expiryMonth" name="expiryMonth">
-                    <option value="">MM</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                  </select>
-                  <select id="expiryYear" name="expiryYear">
-                    <option value="">YYYY</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="CVV" maxlength="4">
-              </div>
-            </div>
+            <div class="row">
+                                            <div class="col-lg-6">
+ <div class="form-group full-width">
+                                            <label class="form-label" for="cardNumber">Card Number *</label>
+                                            <input type="text" id="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" required="">
+                                        </div>
+                                            </div>
+                                             <div class="col-lg-6">
+                                                <div class="form-group full-width">
+                                            <label class="form-label" for="cardName">Name on Card *</label>
+                                            <input type="text" id="cardName" class="form-input" required="">
+                                        </div>
+                                            </div>
+                                             <div class="col-lg-6">
+                                                  <div class="form-group">
+                                            <label class="form-label" for="expiryDate">Expiry Date *</label>
+                                            <input type="text" id="expiryDate" class="form-input" placeholder="MM/YY" required="">
+                                        </div>
+                                            </div>
+                                             <div class="col-lg-6">
+                                                <div class="form-group">
+                                            <label class="form-label" for="cvv">CVV *</label>
+                                            <input type="text" id="cvv" class="form-input" placeholder="123" required="">
+                                        </div>
+                                            </div>
+                                        </div>
           </div>
 
           <!-- PayPal Form -->

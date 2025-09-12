@@ -6,8 +6,9 @@
 }
 
 .checkout-header {
-  text-align: center;
-  margin-bottom: 50px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
 }
 
 .checkout-header h1 {
@@ -199,13 +200,13 @@
 }
 
 .plan-details {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 12px;
-  margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 24px;
 }
 
 .plan-icon {
@@ -281,12 +282,21 @@
 }
 
 .security-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #666;
-  font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px;
+    background: #f0fdf4;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #166534;
 }
 
 .security-info i {
@@ -353,3 +363,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+
