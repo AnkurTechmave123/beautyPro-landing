@@ -8,10 +8,6 @@
  <div class="main-container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- <div class="sidebar-header">
-                <h5 class="sidebar-title">Profile Management</h5>
-                <p class="sidebar-subtitle">Pharmaceutical Tattoo Artist</p>
-            </div> -->
             <div class="sidebar-menu">
                 <button class="menu-item active" data-section="profile">
                     <i class="fas fa-user"></i>
@@ -39,43 +35,243 @@
                 <div class="content-header">
                     <div>
                         <h2 class="content-title">Profile Information</h2>
-                        <p class="content-subtitle">Manage your personal and professional details</p>
+                        <p class="content-subtitle">View and manage your personal details</p>
                     </div>
                     <div class="action-buttons">
-                        <button class="btn-secondary-custom btn-custom" onclick="cancelChanges()">
-                            <i class="fas fa-times"></i>
-                            Cancel
-                        </button>
-                        <button class="btn-primary-custom btn-custom" onclick="saveProfile()">
-                            <i class="fas fa-save"></i>
-                            Save Changes
+                        <button class="btn-primary-custom btn-custom" onclick="openProfileModal()">
+                            <i class="fas fa-edit"></i>
+                            Edit Profile
                         </button>
                     </div>
                 </div>
 
-                <!-- Profile Image Section -->
-                <div class="form-card">
-                    <h5 class="card-title">Profile Picture</h5>
-                    <div class="profile-image-section">
-                        <div class="profile-image-container">
-                            <div class="profile-image-placeholder" id="profileImagePreview">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="image-upload-btn" onclick="document.getElementById('profileImageInput').click()">
-                                <i class="fas fa-camera"></i>
-                            </div>
-                            <input type="file" id="profileImageInput" class="hidden-file-input" accept="image/*" onchange="handleProfileImageUpload(event)">
+                <!-- Profile View Mode -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Personal Information</h5>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+                        <div id="profileAvatarView" class="view-mode-avatar-placeholder">
+                            <i class="fas fa-user"></i>
                         </div>
-                        <div class="image-upload-info">
-                            <h6>Upload Profile Picture</h6>
-                            <p>Choose a professional photo that represents you. Recommended size: 400x400px</p>
+                        <div class="view-mode-grid" style="flex: 1;">
+                            <div class="view-mode-item">
+                                <span class="view-mode-label">Full Name</span>
+                                <span class="view-mode-value" id="profileNameView">Not set</span>
+                            </div>
+                            <div class="view-mode-item">
+                                <span class="view-mode-label">Email</span>
+                                <span class="view-mode-value" id="profileEmailView">Not set</span>
+                            </div>
+                            <div class="view-mode-item">
+                                <span class="view-mode-label">Phone</span>
+                                <span class="view-mode-value" id="profilePhoneView">Not set</span>
+                            </div>
+                            <div class="view-mode-item">
+                                <span class="view-mode-label">Category</span>
+                                <span class="view-mode-value" id="profileCategoryView">Not set</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-mode-item">
+                        <span class="view-mode-label">Bio / Experience</span>
+                        <span class="view-mode-value" id="profileBioView">Not set</span>
+                    </div>
+                </div>
+
+                <!-- Address View -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Address Information</h5>
+                    </div>
+                    <div class="view-mode-grid">
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Address</span>
+                            <span class="view-mode-value" id="profileAddressView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">City</span>
+                            <span class="view-mode-value" id="profileCityView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">State</span>
+                            <span class="view-mode-value" id="profileStateView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Zip Code</span>
+                            <span class="view-mode-value" id="profileZipView">Not set</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Information Section -->
+            <div id="shop" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Shop Information</h2>
+                        <p class="content-subtitle">View and manage your shop details</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary-custom btn-custom" onclick="openShopModal()">
+                            <i class="fas fa-edit"></i>
+                            Edit Shop Info
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Shop Banner View -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Shop Banner</h5>
+                    </div>
+                    <div id="shopBannerView" style="width: 100%; height: 200px; background: var(--background-color); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                        No banner uploaded
+                    </div>
+                </div>
+
+                <!-- Shop Details View -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Shop Details</h5>
+                    </div>
+                    <div class="view-mode-grid">
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Shop Name</span>
+                            <span class="view-mode-value" id="shopNameView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Email</span>
+                            <span class="view-mode-value" id="shopEmailView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Phone</span>
+                            <span class="view-mode-value" id="shopPhoneView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Description</span>
+                            <span class="view-mode-value" id="shopDescriptionView">Not set</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Personal Details -->
+                <!-- Shop Address View -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Shop Address</h5>
+                    </div>
+                    <div class="view-mode-grid">
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Address</span>
+                            <span class="view-mode-value" id="shopAddressView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">City</span>
+                            <span class="view-mode-value" id="shopCityView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">State/Province</span>
+                            <span class="view-mode-value" id="shopStateView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Postal/Zip Code</span>
+                            <span class="view-mode-value" id="shopPostalView">Not set</span>
+                        </div>
+                        <div class="view-mode-item">
+                            <span class="view-mode-label">Country</span>
+                            <span class="view-mode-value" id="shopCountryView">Not set</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Schedule View -->
+                <div class="view-mode-card">
+                    <div class="view-mode-header">
+                        <h5 class="view-mode-title">Availability Schedule</h5>
+                    </div>
+                    <div id="shopScheduleView">
+                        <p style="color: var(--text-muted);">No schedule set</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Gallery Section -->
+            <div id="gallery" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Work Gallery</h2>
+                        <p class="content-subtitle">Showcase your pharmaceutical tattoo work</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary-custom btn-custom" onclick="openGalleryUploadModal()">
+                            <i class="fas fa-plus"></i>
+                            Upload Images
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modern Gallery Grid -->
                 <div class="form-card">
-                    <h5 class="card-title">Personal Details</h5>
+                    <div class="modern-gallery-grid" id="modernGalleryGrid">
+                        <!-- Gallery items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artists Section -->
+            <div id="artists" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Our Artists</h2>
+                        <p class="content-subtitle">Manage your team of pharmaceutical tattoo artists</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary-custom btn-custom" onclick="openArtistModal()">
+                            <i class="fas fa-plus"></i>
+                            Add Artist
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modern-artist-grid" id="modernArtistGrid">
+                    <!-- Artists will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Profile Edit Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Profile Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Profile Image Section -->
+                    <div class="form-group">
+                        <label class="form-label">Profile Picture</label>
+                        <div class="profile-image-section">
+                            <div class="profile-image-container">
+                                <div class="profile-image-placeholder" id="profileImagePreview">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="image-upload-btn" onclick="document.getElementById('profileImageInput').click()">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <input type="file" id="profileImageInput" class="hidden-file-input" accept="image/*" onchange="handleProfileImageUpload(event)">
+                            </div>
+                            <div class="image-upload-info">
+                                <h6>Upload Profile Picture</h6>
+                                <p>Choose a professional photo that represents you</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -112,13 +308,11 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Bio / Experience</label>
-                        <textarea class="form-control" id="bio" rows="4" placeholder="Tell us about your experience and expertise in pharmaceutical tattooing..."></textarea>
+                        <textarea class="form-control" id="bio" rows="4" placeholder="Tell us about your experience and expertise..."></textarea>
                     </div>
-                </div>
 
-                <!-- Address Information -->
-                <div class="form-card">
-                    <h5 class="card-title">Address Information</h5>
+                    <!-- Address Information -->
+                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Address Information</h6>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -154,30 +348,40 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Shop Information Section -->
-            <div id="shop" class="content-section">
-                <div class="content-header">
-                    <div>
-                        <h2 class="content-title">Shop Information</h2>
-                        <p class="content-subtitle">Manage your shop details and location</p>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-secondary-custom btn-custom" onclick="cancelShopChanges()">
-                            <i class="fas fa-times"></i>
-                            Cancel
-                        </button>
-                        <button class="btn-primary-custom btn-custom" onclick="saveShopInfo()">
-                            <i class="fas fa-save"></i>
-                            Save Changes
-                        </button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="saveProfile()">Save Profile</button>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Shop Details -->
-                <div class="form-card">
-                    <h5 class="card-title">Shop Details</h5>
+    <!-- Shop Edit Modal -->
+    <div class="modal fade" id="shopModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Shop Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Shop Banner Upload -->
+                    <div class="form-group">
+                        <label class="form-label">Shop Banner</label>
+                        <div class="shop-banner-section">
+                            <div class="shop-banner-preview" id="shopBannerPreview" onclick="document.getElementById('shopBannerInput').click()">
+                                <div class="shop-banner-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <h6>Upload Shop Banner</h6>
+                                    <p>Click to upload banner image (Recommended: 1200x400px)</p>
+                                </div>
+                            </div>
+                            <input type="file" id="shopBannerInput" class="hidden-file-input" accept="image/*" onchange="handleShopBannerUpload(event)">
+                        </div>
+                    </div>
+
+                    <!-- Shop Details -->
+                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Details</h6>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -192,127 +396,99 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Shop Phone *</label>
-                        <input type="tel" class="form-control" id="shopPhone" placeholder="Enter shop phone number">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Shop Phone *</label>
+                                <input type="tel" class="form-control" id="shopPhone" placeholder="Enter shop phone number">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Shop Description</label>
+                        <textarea class="form-control" id="shopDescription" rows="3" placeholder="Describe your shop and services..."></textarea>
+                    </div>
 
-                <!-- Shop Address -->
-                <div class="form-card">
-                    <h5 class="card-title">Shop Address</h5>
+                    <!-- Shop Address -->
+                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Address</h6>
                     <div class="form-group">
                         <label class="form-label">Store Address *</label>
                         <textarea class="form-control" id="storeAddress" rows="3" placeholder="Enter complete store address"></textarea>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Country *</label>
-                                <select class="form-control" id="shopCountry">
-                                    <option value="">Select Country</option>
-                                    <option value="us">United States</option>
-                                    <option value="ca">Canada</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="au">Australia</option>
-                                    <option value="de">Germany</option>
-                                    <option value="fr">France</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">City *</label>
                                 <input type="text" class="form-control" id="shopCity" placeholder="Enter city">
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">State/Province *</label>
+                                <input type="text" class="form-control" id="shopState" placeholder="Enter state/province">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Postal/Zip Code *</label>
+                                <input type="text" class="form-control" id="shopPostal" placeholder="Enter postal/zip code">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label class="form-label">Country *</label>
+                        <select class="form-control" id="shopCountry">
+                            <option value="">Select Country</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="au">Australia</option>
+                            <option value="de">Germany</option>
+                            <option value="fr">France</option>
+                        </select>
+                    </div>
 
-            <!-- Work Gallery Section -->
-            <div id="gallery" class="content-section">
-                <div class="content-header">
-                    <div>
-                        <h2 class="content-title">Work Gallery</h2>
-                        <p class="content-subtitle">Showcase your pharmaceutical tattoo work</p>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-primary-custom btn-custom" onclick="openUploadModal()">
-                            <i class="fas fa-plus"></i>
-                            Upload Work
+                    <!-- Availability Schedule -->
+                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Availability Schedule</h6>
+                    <div class="schedule-container">
+                        <div id="scheduleList">
+                            <!-- Schedule items will be added here -->
+                        </div>
+                        <button type="button" class="btn-schedule btn-add-schedule" onclick="addScheduleItem()">
+                            <i class="fas fa-plus"></i> Add Schedule
                         </button>
                     </div>
                 </div>
-
-                <!-- Upload Area -->
-                <div class="form-card">
-                    <div class="upload-area" onclick="openUploadModal()">
-                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                        <h5>Upload Your Work</h5>
-                        <p>Click here to upload images of your pharmaceutical tattoo work</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Grid -->
-                <div class="form-card">
-                    <h5 class="card-title">Your Work Portfolio</h5>
-                    <div class="gallery-grid" id="galleryGrid">
-                        <!-- Gallery items will be dynamically added here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Artists Section -->
-            <div id="artists" class="content-section">
-                <div class="content-header">
-                    <div>
-                        <h2 class="content-title">Our Artists</h2>
-                        <p class="content-subtitle">Manage your team of pharmaceutical tattoo artists</p>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-primary-custom btn-custom" onclick="openArtistModal()">
-                            <i class="fas fa-plus"></i>
-                            Add Artist
-                        </button>
-                    </div>
-                </div>
-
-                <div id="artistsList">
-                    <!-- Artists will be dynamically added here -->
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="saveShopInfo()">Save Shop Info</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Upload Work Modal -->
-    <div class="modal fade" id="uploadModal" tabindex="-1">
-        <div class="modal-dialog">
+    <!-- Gallery Upload Modal -->
+    <div class="modal fade" id="galleryUploadModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Upload Work</h5>
+                    <h5 class="modal-title">Upload Gallery Images</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="form-label">Select Image *</label>
-                        <input type="file" class="form-control" id="workImage" accept="image/*">
+                    <div class="modern-upload-area" id="modernUploadArea">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h5>Drag & Drop Images Here</h5>
+                        <p>Or click to select multiple images</p>
+                        <input type="file" id="galleryImagesInput" class="hidden-file-input" accept="image/*" multiple onchange="handleGalleryImagesUpload(event)">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Title *</label>
-                        <input type="text" class="form-control" id="workTitle" placeholder="Enter work title">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" id="workDescription" rows="3" placeholder="Describe the work..."></textarea>
+                    <div class="upload-preview-grid" id="uploadPreviewGrid">
+                        <!-- Preview images will be shown here -->
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-custom btn-custom" onclick="uploadWork()">Upload</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="uploadGalleryImages()">Upload Images</button>
                 </div>
             </div>
         </div>
@@ -323,7 +499,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Artist</h5>
+                    <h5 class="modal-title" id="artistModalTitle">Add Artist</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -392,40 +568,58 @@
         </div>
     </div>
 
-    <!-- Edit Work Modal -->
-    <div class="modal fade" id="editWorkModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Work</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="form-label">Title *</label>
-                        <input type="text" class="form-control" id="editWorkTitle">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" id="editWorkDescription" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-custom btn-custom" onclick="updateWork()">Update</button>
-                </div>
-            </div>
+    <!-- Fancy Image Popup -->
+    <div class="fancy-popup-overlay" id="fancyPopup">
+        <div class="fancy-popup-content">
+            <button class="fancy-popup-close" onclick="closeFancyPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img class="fancy-popup-image" id="fancyPopupImage" src="" alt="">
         </div>
     </div>
+
 <?php include "footer.php" ?>
 
 <script>
         // Global variables
         let galleryWorks = [];
         let artists = [];
-        let currentEditIndex = -1;
+        let currentEditArtistIndex = -1;
         let currentArtistImage = null;
         let currentProfileImage = null;
+        let currentShopBanner = null;
+        let scheduleItems = [];
+        let uploadPreviewImages = [];
+
+        // Profile data
+        let profileData = {
+            fullName: '',
+            email: '',
+            phone: '',
+            category: '',
+            bio: '',
+            address1: '',
+            address2: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            profileImage: null
+        };
+
+        // Shop data
+        let shopData = {
+            shopName: '',
+            shopEmail: '',
+            shopPhone: '',
+            shopDescription: '',
+            storeAddress: '',
+            shopCity: '',
+            shopState: '',
+            shopPostal: '',
+            shopCountry: '',
+            shopBanner: null,
+            schedule: []
+        };
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -442,10 +636,15 @@
                 });
             });
 
+            // Set up drag and drop for gallery upload
+            setupDragAndDrop();
+
             // Load sample data
             loadSampleData();
-            renderGallery();
-            renderArtists();
+            renderModernGallery();
+            renderModernArtists();
+            updateProfileView();
+            updateShopView();
         }
 
         function switchSection(sectionId) {
@@ -471,20 +670,14 @@
             galleryWorks = [
                 {
                     id: 1,
-                    title: "Pharmaceutical Nipple Reconstruction",
-                    description: "Advanced areola reconstruction using pharmaceutical-grade pigments for post-mastectomy patients",
                     image: "https://images.pexels.com/photos/5066613/pexels-photo-5066613.jpeg?auto=compress&cs=tinysrgb&w=400"
                 },
                 {
                     id: 2,
-                    title: "Scar Camouflage Treatment",
-                    description: "Medical tattoo to blend surgical scars with natural skin tone using specialized techniques",
                     image: "https://images.pexels.com/photos/5069433/pexels-photo-5069433.jpeg?auto=compress&cs=tinysrgb&w=400"
                 },
                 {
                     id: 3,
-                    title: "Eyebrow Reconstruction",
-                    description: "Hair-like strokes for chemotherapy patients using pharmaceutical-grade pigments",
                     image: "https://images.pexels.com/photos/5069452/pexels-photo-5069452.jpeg?auto=compress&cs=tinysrgb&w=400"
                 }
             ];
@@ -514,7 +707,28 @@
             ];
         }
 
-        // Profile image upload handler
+        // Profile functions
+        function openProfileModal() {
+            // Populate form with current data
+            document.getElementById('fullName').value = profileData.fullName;
+            document.getElementById('email').value = profileData.email;
+            document.getElementById('phone').value = profileData.phone;
+            document.getElementById('category').value = profileData.category;
+            document.getElementById('bio').value = profileData.bio;
+            document.getElementById('address1').value = profileData.address1;
+            document.getElementById('address2').value = profileData.address2;
+            document.getElementById('city').value = profileData.city;
+            document.getElementById('state').value = profileData.state;
+            document.getElementById('zipCode').value = profileData.zipCode;
+
+            if (profileData.profileImage) {
+                document.getElementById('profileImagePreview').innerHTML = `<img src="${profileData.profileImage}" alt="Profile" class="profile-image">`;
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('profileModal'));
+            modal.show();
+        }
+
         function handleProfileImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -528,7 +742,406 @@
             }
         }
 
-        // Artist image upload handler
+        function saveProfile() {
+            // Get form data
+            profileData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                category: document.getElementById('category').value,
+                bio: document.getElementById('bio').value,
+                address1: document.getElementById('address1').value,
+                address2: document.getElementById('address2').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zipCode: document.getElementById('zipCode').value,
+                profileImage: currentProfileImage || profileData.profileImage
+            };
+
+            // Basic validation
+            if (!profileData.fullName || !profileData.email || !profileData.phone) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            updateProfileView();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('profileModal'));
+            modal.hide();
+
+            showToast('Success', 'Profile updated successfully!', 'success');
+        }
+
+        function updateProfileView() {
+            document.getElementById('profileNameView').textContent = profileData.fullName || 'Not set';
+            document.getElementById('profileEmailView').textContent = profileData.email || 'Not set';
+            document.getElementById('profilePhoneView').textContent = profileData.phone || 'Not set';
+            document.getElementById('profileCategoryView').textContent = profileData.category || 'Not set';
+            document.getElementById('profileBioView').textContent = profileData.bio || 'Not set';
+            
+            const address = [profileData.address1, profileData.address2].filter(Boolean).join(', ');
+            document.getElementById('profileAddressView').textContent = address || 'Not set';
+            document.getElementById('profileCityView').textContent = profileData.city || 'Not set';
+            document.getElementById('profileStateView').textContent = profileData.state || 'Not set';
+            document.getElementById('profileZipView').textContent = profileData.zipCode || 'Not set';
+
+            const avatarView = document.getElementById('profileAvatarView');
+            if (profileData.profileImage) {
+                avatarView.innerHTML = `<img src="${profileData.profileImage}" alt="Profile" class="view-mode-avatar">`;
+            } else {
+                avatarView.className = 'view-mode-avatar-placeholder';
+                avatarView.innerHTML = '<i class="fas fa-user"></i>';
+            }
+        }
+
+        // Shop functions
+        function openShopModal() {
+            // Populate form with current data
+            document.getElementById('shopName').value = shopData.shopName;
+            document.getElementById('shopEmail').value = shopData.shopEmail;
+            document.getElementById('shopPhone').value = shopData.shopPhone;
+            document.getElementById('shopDescription').value = shopData.shopDescription;
+            document.getElementById('storeAddress').value = shopData.storeAddress;
+            document.getElementById('shopCity').value = shopData.shopCity;
+            document.getElementById('shopState').value = shopData.shopState;
+            document.getElementById('shopPostal').value = shopData.shopPostal;
+            document.getElementById('shopCountry').value = shopData.shopCountry;
+
+            if (shopData.shopBanner) {
+                document.getElementById('shopBannerPreview').innerHTML = `<img src="${shopData.shopBanner}" alt="Shop Banner">`;
+            }
+
+            // Load schedule
+            scheduleItems = [...shopData.schedule];
+            renderScheduleItems();
+
+            const modal = new bootstrap.Modal(document.getElementById('shopModal'));
+            modal.show();
+        }
+
+        function handleShopBannerUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentShopBanner = e.target.result;
+                    const preview = document.getElementById('shopBannerPreview');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Shop Banner">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function addScheduleItem() {
+            const newSchedule = {
+                id: Date.now(),
+                day: '',
+                openTime: '',
+                closeTime: ''
+            };
+            scheduleItems.push(newSchedule);
+            renderScheduleItems();
+        }
+
+        function removeScheduleItem(id) {
+            scheduleItems = scheduleItems.filter(item => item.id !== id);
+            renderScheduleItems();
+        }
+
+        function renderScheduleItems() {
+            const scheduleList = document.getElementById('scheduleList');
+            scheduleList.innerHTML = '';
+
+            scheduleItems.forEach(item => {
+                const scheduleDiv = document.createElement('div');
+                scheduleDiv.className = 'schedule-item';
+                scheduleDiv.innerHTML = `
+                    <select class="form-control schedule-day" onchange="updateScheduleItem(${item.id}, 'day', this.value)">
+                        <option value="">Select Day</option>
+                        <option value="monday" ${item.day === 'monday' ? 'selected' : ''}>Monday</option>
+                        <option value="tuesday" ${item.day === 'tuesday' ? 'selected' : ''}>Tuesday</option>
+                        <option value="wednesday" ${item.day === 'wednesday' ? 'selected' : ''}>Wednesday</option>
+                        <option value="thursday" ${item.day === 'thursday' ? 'selected' : ''}>Thursday</option>
+                        <option value="friday" ${item.day === 'friday' ? 'selected' : ''}>Friday</option>
+                        <option value="saturday" ${item.day === 'saturday' ? 'selected' : ''}>Saturday</option>
+                        <option value="sunday" ${item.day === 'sunday' ? 'selected' : ''}>Sunday</option>
+                    </select>
+                    <div class="schedule-time">
+                        <input type="time" class="form-control" value="${item.openTime}" onchange="updateScheduleItem(${item.id}, 'openTime', this.value)">
+                        <span>to</span>
+                        <input type="time" class="form-control" value="${item.closeTime}" onchange="updateScheduleItem(${item.id}, 'closeTime', this.value)">
+                    </div>
+                    <div class="schedule-actions">
+                        <button type="button" class="btn-remove-schedule" onclick="removeScheduleItem(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                scheduleList.appendChild(scheduleDiv);
+            });
+        }
+
+        function updateScheduleItem(id, field, value) {
+            const item = scheduleItems.find(item => item.id === id);
+            if (item) {
+                item[field] = value;
+            }
+        }
+
+        function saveShopInfo() {
+            // Get form data
+            shopData = {
+                shopName: document.getElementById('shopName').value,
+                shopEmail: document.getElementById('shopEmail').value,
+                shopPhone: document.getElementById('shopPhone').value,
+                shopDescription: document.getElementById('shopDescription').value,
+                storeAddress: document.getElementById('storeAddress').value,
+                shopCity: document.getElementById('shopCity').value,
+                shopState: document.getElementById('shopState').value,
+                shopPostal: document.getElementById('shopPostal').value,
+                shopCountry: document.getElementById('shopCountry').value,
+                shopBanner: currentShopBanner || shopData.shopBanner,
+                schedule: [...scheduleItems]
+            };
+
+            // Basic validation
+            if (!shopData.shopName || !shopData.shopEmail || !shopData.shopPhone) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            updateShopView();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('shopModal'));
+            modal.hide();
+
+            showToast('Success', 'Shop information updated successfully!', 'success');
+        }
+
+        function updateShopView() {
+            document.getElementById('shopNameView').textContent = shopData.shopName || 'Not set';
+            document.getElementById('shopEmailView').textContent = shopData.shopEmail || 'Not set';
+            document.getElementById('shopPhoneView').textContent = shopData.shopPhone || 'Not set';
+            document.getElementById('shopDescriptionView').textContent = shopData.shopDescription || 'Not set';
+            document.getElementById('shopAddressView').textContent = shopData.storeAddress || 'Not set';
+            document.getElementById('shopCityView').textContent = shopData.shopCity || 'Not set';
+            document.getElementById('shopStateView').textContent = shopData.shopState || 'Not set';
+            document.getElementById('shopPostalView').textContent = shopData.shopPostal || 'Not set';
+            document.getElementById('shopCountryView').textContent = shopData.shopCountry || 'Not set';
+
+            // Update banner
+            const bannerView = document.getElementById('shopBannerView');
+            if (shopData.shopBanner) {
+                bannerView.innerHTML = `<img src="${shopData.shopBanner}" alt="Shop Banner" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);">`;
+            } else {
+                bannerView.innerHTML = 'No banner uploaded';
+                bannerView.style.display = 'flex';
+                bannerView.style.alignItems = 'center';
+                bannerView.style.justifyContent = 'center';
+                bannerView.style.color = 'var(--text-muted)';
+            }
+
+            // Update schedule
+            const scheduleView = document.getElementById('shopScheduleView');
+            if (shopData.schedule.length > 0) {
+                let scheduleHtml = '';
+                shopData.schedule.forEach(item => {
+                    if (item.day && item.openTime && item.closeTime) {
+                        scheduleHtml += `
+                            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <span style="font-weight: 500; text-transform: capitalize;">${item.day}</span>
+                                <span>${item.openTime} - ${item.closeTime}</span>
+                            </div>
+                        `;
+                    }
+                });
+                scheduleView.innerHTML = scheduleHtml || '<p style="color: var(--text-muted);">No schedule set</p>';
+            } else {
+                scheduleView.innerHTML = '<p style="color: var(--text-muted);">No schedule set</p>';
+            }
+        }
+
+        // Gallery functions
+        function setupDragAndDrop() {
+            const uploadArea = document.getElementById('modernUploadArea');
+            
+            uploadArea.addEventListener('click', () => {
+                document.getElementById('galleryImagesInput').click();
+            });
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = Array.from(e.dataTransfer.files);
+                handleMultipleImageUpload(files);
+            });
+        }
+
+        function openGalleryUploadModal() {
+            uploadPreviewImages = [];
+            document.getElementById('uploadPreviewGrid').innerHTML = '';
+            document.getElementById('galleryImagesInput').value = '';
+            
+            const modal = new bootstrap.Modal(document.getElementById('galleryUploadModal'));
+            modal.show();
+        }
+
+        function handleGalleryImagesUpload(event) {
+            const files = Array.from(event.target.files);
+            handleMultipleImageUpload(files);
+        }
+
+        function handleMultipleImageUpload(files) {
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadPreviewImages.push({
+                            id: Date.now() + Math.random(),
+                            src: e.target.result,
+                            file: file
+                        });
+                        renderUploadPreview();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function renderUploadPreview() {
+            const previewGrid = document.getElementById('uploadPreviewGrid');
+            previewGrid.innerHTML = '';
+
+            uploadPreviewImages.forEach(image => {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'upload-preview-item';
+                previewItem.innerHTML = `
+                    <img src="${image.src}" alt="Preview" class="upload-preview-image">
+                    <button class="upload-preview-remove" onclick="removeUploadPreview('${image.id}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                previewGrid.appendChild(previewItem);
+            });
+        }
+
+        function removeUploadPreview(id) {
+            uploadPreviewImages = uploadPreviewImages.filter(img => img.id !== id);
+            renderUploadPreview();
+        }
+
+        function uploadGalleryImages() {
+            if (uploadPreviewImages.length === 0) {
+                showToast('Validation Error', 'Please select at least one image', 'error');
+                return;
+            }
+
+            uploadPreviewImages.forEach(image => {
+                galleryWorks.push({
+                    id: Date.now() + Math.random(),
+                    image: image.src
+                });
+            });
+
+            renderModernGallery();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('galleryUploadModal'));
+            modal.hide();
+
+            showToast('Success', `${uploadPreviewImages.length} image(s) uploaded successfully!`, 'success');
+        }
+
+        function renderModernGallery() {
+            const galleryGrid = document.getElementById('modernGalleryGrid');
+            galleryGrid.innerHTML = '';
+
+            if (galleryWorks.length === 0) {
+                galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-muted); grid-column: 1 / -1;">No images uploaded yet. Click "Upload Images" to add your work.</p>';
+                return;
+            }
+
+            galleryWorks.forEach((work, index) => {
+                const galleryCard = document.createElement('div');
+                galleryCard.className = 'modern-gallery-card';
+                galleryCard.innerHTML = `
+                    <img src="${work.image}" alt="Gallery Image" class="modern-gallery-image" onclick="openFancyPopup('${work.image}')">
+                    <div class="modern-gallery-actions">
+                        <button class="modern-action-btn delete" onclick="deleteGalleryImage(${index})" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                galleryGrid.appendChild(galleryCard);
+            });
+        }
+
+        function openFancyPopup(imageSrc) {
+            document.getElementById('fancyPopupImage').src = imageSrc;
+            document.getElementById('fancyPopup').classList.add('active');
+        }
+
+        function closeFancyPopup() {
+            document.getElementById('fancyPopup').classList.remove('active');
+        }
+
+        function deleteGalleryImage(index) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                galleryWorks.splice(index, 1);
+                renderModernGallery();
+                showToast('Success', 'Image deleted successfully!', 'success');
+            }
+        }
+
+        // Artist functions
+        function openArtistModal() {
+            currentEditArtistIndex = -1;
+            document.getElementById('artistModalTitle').textContent = 'Add Artist';
+            
+            // Clear form
+            document.getElementById('artistName').value = '';
+            document.getElementById('artistEmail').value = '';
+            document.getElementById('artistPhone').value = '';
+            document.getElementById('artistExperience').value = '';
+            document.getElementById('artistExpertise').value = '';
+            document.getElementById('artistBio').value = '';
+            document.getElementById('artistImageInput').value = '';
+            document.getElementById('artistImagePreview').innerHTML = '<i class="fas fa-user"></i>';
+            currentArtistImage = null;
+            
+            const modal = new bootstrap.Modal(document.getElementById('artistModal'));
+            modal.show();
+        }
+
+        function editArtist(index) {
+            currentEditArtistIndex = index;
+            const artist = artists[index];
+            
+            document.getElementById('artistModalTitle').textContent = 'Edit Artist';
+            document.getElementById('artistName').value = artist.name;
+            document.getElementById('artistEmail').value = artist.email;
+            document.getElementById('artistPhone').value = artist.phone;
+            document.getElementById('artistExperience').value = artist.experience;
+            document.getElementById('artistExpertise').value = artist.expertise;
+            document.getElementById('artistBio').value = artist.bio;
+            
+            if (artist.image) {
+                document.getElementById('artistImagePreview').innerHTML = `<img src="${artist.image}" alt="Artist" class="profile-image">`;
+                currentArtistImage = artist.image;
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('artistModal'));
+            modal.show();
+        }
+
         function handleArtistImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -539,6 +1152,101 @@
                     preview.innerHTML = `<img src="${e.target.result}" alt="Artist" class="profile-image">`;
                 };
                 reader.readAsDataURL(file);
+            }
+        }
+
+        function saveArtist() {
+            const artistData = {
+                id: currentEditArtistIndex >= 0 ? artists[currentEditArtistIndex].id : Date.now(),
+                name: document.getElementById('artistName').value,
+                email: document.getElementById('artistEmail').value,
+                phone: document.getElementById('artistPhone').value,
+                experience: parseInt(document.getElementById('artistExperience').value),
+                expertise: document.getElementById('artistExpertise').value,
+                bio: document.getElementById('artistBio').value,
+                image: currentArtistImage
+            };
+
+            if (!artistData.name || !artistData.email || !artistData.phone || !artistData.experience || !artistData.expertise) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            if (currentEditArtistIndex >= 0) {
+                artists[currentEditArtistIndex] = artistData;
+                showToast('Success', 'Artist updated successfully!', 'success');
+            } else {
+                artists.push(artistData);
+                showToast('Success', 'Artist added successfully!', 'success');
+            }
+
+            renderModernArtists();
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('artistModal'));
+            modal.hide();
+        }
+
+        function renderModernArtists() {
+            const artistGrid = document.getElementById('modernArtistGrid');
+            artistGrid.innerHTML = '';
+
+            if (artists.length === 0) {
+                artistGrid.innerHTML = '<div class="form-card"><p class="text-center" style="color: var(--text-muted);">No artists added yet. Click "Add Artist" to add your first team member.</p></div>';
+                return;
+            }
+
+            artists.forEach((artist, index) => {
+                const artistCard = document.createElement('div');
+                artistCard.className = 'modern-artist-card';
+                artistCard.innerHTML = `
+                    <div class="modern-artist-actions">
+                        <button class="modern-action-btn edit" onclick="editArtist(${index})" title="Edit Artist">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="modern-action-btn delete" onclick="deleteArtist(${index})" title="Delete Artist">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="modern-artist-header">
+                        ${artist.image ? 
+                            `<img src="${artist.image}" alt="${artist.name}" class="modern-artist-avatar">` :
+                            `<div class="modern-artist-avatar-placeholder"><i class="fas fa-user"></i></div>`
+                        }
+                        <div class="modern-artist-info">
+                            <h3>${artist.name}</h3>
+                            <div class="modern-artist-experience">${artist.experience} years experience</div>
+                        </div>
+                    </div>
+                    <div class="modern-artist-details">
+                        <div class="modern-artist-detail">
+                            <span class="modern-artist-label">Email</span>
+                            <span class="modern-artist-value">${artist.email}</span>
+                        </div>
+                        <div class="modern-artist-detail">
+                            <span class="modern-artist-label">Phone</span>
+                            <span class="modern-artist-value">${artist.phone}</span>
+                        </div>
+                        <div class="modern-artist-detail">
+                            <span class="modern-artist-label">Expertise</span>
+                            <span class="modern-artist-value">${artist.expertise}</span>
+                        </div>
+                        ${artist.bio ? `
+                            <div class="modern-artist-detail">
+                                <span class="modern-artist-label">Bio</span>
+                                <span class="modern-artist-value">${artist.bio}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                artistGrid.appendChild(artistCard);
+            });
+        }
+
+        function deleteArtist(index) {
+            if (confirm('Are you sure you want to delete this artist?')) {
+                artists.splice(index, 1);
+                renderModernArtists();
+                showToast('Success', 'Artist deleted successfully!', 'success');
             }
         }
 
@@ -581,285 +1289,17 @@
             }, 5000);
         }
 
-        function saveProfile() {
-            const profileData = {
-                fullName: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                category: document.getElementById('category').value,
-                bio: document.getElementById('bio').value,
-                address1: document.getElementById('address1').value,
-                address2: document.getElementById('address2').value,
-                city: document.getElementById('city').value,
-                state: document.getElementById('state').value,
-                zipCode: document.getElementById('zipCode').value,
-                profileImage: currentProfileImage
-            };
-
-            // Basic validation
-            if (!profileData.fullName || !profileData.email || !profileData.phone) {
-                showToast('Validation Error', 'Please fill in all required fields', 'error');
-                return;
+        // Close fancy popup when clicking outside
+        document.getElementById('fancyPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFancyPopup();
             }
+        });
 
-            // Simulate save operation
-            showToast('Success', 'Profile updated successfully!', 'success');
-            console.log('Profile saved:', profileData);
-        }
-
-        function cancelChanges() {
-            showToast('Info', 'Changes cancelled', 'info');
-        }
-
-        function saveShopInfo() {
-            const shopData = {
-                shopName: document.getElementById('shopName').value,
-                shopEmail: document.getElementById('shopEmail').value,
-                shopPhone: document.getElementById('shopPhone').value,
-                storeAddress: document.getElementById('storeAddress').value,
-                shopCountry: document.getElementById('shopCountry').value,
-                shopCity: document.getElementById('shopCity').value
-            };
-
-            // Basic validation
-            if (!shopData.shopName || !shopData.shopEmail || !shopData.shopPhone) {
-                showToast('Validation Error', 'Please fill in all required fields', 'error');
-                return;
+        // Close fancy popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFancyPopup();
             }
-
-            // Simulate save operation
-            showToast('Success', 'Shop information updated successfully!', 'success');
-            console.log('Shop info saved:', shopData);
-        }
-
-        function cancelShopChanges() {
-            showToast('Info', 'Shop changes cancelled', 'info');
-        }
-
-        function openUploadModal() {
-            // Clear form
-            document.getElementById('workTitle').value = '';
-            document.getElementById('workDescription').value = '';
-            document.getElementById('workImage').value = '';
-            
-            const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
-            modal.show();
-        }
-
-        function uploadWork() {
-            const title = document.getElementById('workTitle').value;
-            const description = document.getElementById('workDescription').value;
-            const fileInput = document.getElementById('workImage');
-
-            if (!title || !fileInput.files[0]) {
-                showToast('Validation Error', 'Please fill in title and select an image', 'error');
-                return;
-            }
-
-            // Create new work object
-            const newWork = {
-                id: Date.now(),
-                title: title,
-                description: description,
-                image: URL.createObjectURL(fileInput.files[0])
-            };
-
-            galleryWorks.push(newWork);
-            renderGallery();
-
-            // Clear form and close modal
-            document.getElementById('workTitle').value = '';
-            document.getElementById('workDescription').value = '';
-            fileInput.value = '';
-            
-            const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
-            modal.hide();
-
-            showToast('Success', 'Work uploaded successfully!', 'success');
-        }
-
-        function renderGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = '';
-
-            if (galleryWorks.length === 0) {
-                galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-muted); grid-column: 1 / -1;">No work uploaded yet. Click "Upload Work" to add your first piece.</p>';
-                return;
-            }
-
-            galleryWorks.forEach((work, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${work.image}" alt="${work.title}" class="gallery-image">
-                    <div class="gallery-content">
-                        <div class="gallery-title">${work.title}</div>
-                        <div class="gallery-description">${work.description}</div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <div class="gallery-actions">
-                            <button class="gallery-btn edit" onclick="editWork(${index})" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="gallery-btn delete" onclick="deleteWork(${index})" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-                galleryGrid.appendChild(galleryItem);
-            });
-        }
-
-        function editWork(index) {
-            currentEditIndex = index;
-            const work = galleryWorks[index];
-            
-            document.getElementById('editWorkTitle').value = work.title;
-            document.getElementById('editWorkDescription').value = work.description;
-            
-            const modal = new bootstrap.Modal(document.getElementById('editWorkModal'));
-            modal.show();
-        }
-
-        function updateWork() {
-            if (currentEditIndex === -1) return;
-
-            const title = document.getElementById('editWorkTitle').value;
-            if (!title) {
-                showToast('Validation Error', 'Please enter a title', 'error');
-                return;
-            }
-
-            galleryWorks[currentEditIndex].title = title;
-            galleryWorks[currentEditIndex].description = document.getElementById('editWorkDescription').value;
-
-            renderGallery();
-            
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editWorkModal'));
-            modal.hide();
-            
-            showToast('Success', 'Work updated successfully!', 'success');
-            currentEditIndex = -1;
-        }
-
-        function deleteWork(index) {
-            if (confirm('Are you sure you want to delete this work?')) {
-                galleryWorks.splice(index, 1);
-                renderGallery();
-                showToast('Success', 'Work deleted successfully!', 'success');
-            }
-        }
-
-        function openArtistModal() {
-            // Clear form
-            document.getElementById('artistName').value = '';
-            document.getElementById('artistEmail').value = '';
-            document.getElementById('artistPhone').value = '';
-            document.getElementById('artistExperience').value = '';
-            document.getElementById('artistExpertise').value = '';
-            document.getElementById('artistBio').value = '';
-            document.getElementById('artistImageInput').value = '';
-            document.getElementById('artistImagePreview').innerHTML = '<i class="fas fa-user"></i>';
-            currentArtistImage = null;
-            
-            const modal = new bootstrap.Modal(document.getElementById('artistModal'));
-            modal.show();
-        }
-
-        function saveArtist() {
-            const artistData = {
-                id: Date.now(),
-                name: document.getElementById('artistName').value,
-                email: document.getElementById('artistEmail').value,
-                phone: document.getElementById('artistPhone').value,
-                experience: parseInt(document.getElementById('artistExperience').value),
-                expertise: document.getElementById('artistExpertise').value,
-                bio: document.getElementById('artistBio').value,
-                image: currentArtistImage
-            };
-
-            if (!artistData.name || !artistData.email || !artistData.phone || !artistData.experience || !artistData.expertise) {
-                showToast('Validation Error', 'Please fill in all required fields', 'error');
-                return;
-            }
-
-            artists.push(artistData);
-            renderArtists();
-
-            const modal = bootstrap.Modal.getInstance(document.getElementById('artistModal'));
-            modal.hide();
-
-            showToast('Success', 'Artist added successfully!', 'success');
-        }
-
-        function renderArtists() {
-            const artistsList = document.getElementById('artistsList');
-            artistsList.innerHTML = '';
-
-            if (artists.length === 0) {
-                artistsList.innerHTML = '<div class="form-card"><p class="text-center" style="color: var(--text-muted);">No artists added yet. Click "Add Artist" to add your first team member.</p></div>';
-                return;
-            }
-
-            artists.forEach((artist, index) => {
-                const artistCard = document.createElement('div');
-                artistCard.className = 'artist-card';
-                artistCard.innerHTML = `
-                    <div class="artist-header">
-                        <div class="artist-info">
-                            ${artist.image ? 
-                                `<img src="${artist.image}" alt="${artist.name}" class="artist-avatar">` :
-                                `<div class="artist-avatar-placeholder"><i class="fas fa-user"></i></div>`
-                            }
-                            <div>
-                                <div class="artist-name">${artist.name}</div>
-                                <div class="artist-experience">${artist.experience} years experience</div>
-                            </div>
-                        </div>
-                        <div class="artist-actions">
-                            <button class="gallery-btn edit" onclick="editArtist(${index})" title="Edit Artist">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="gallery-btn delete" onclick="deleteArtist(${index})" title="Delete Artist">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="artist-details">
-                        <div class="artist-detail-item">
-                            <span class="artist-detail-label">Email:</span>
-                            <div class="artist-detail-value">${artist.email}</div>
-                        </div>
-                        <div class="artist-detail-item">
-                            <span class="artist-detail-label">Phone:</span>
-                            <div class="artist-detail-value">${artist.phone}</div>
-                        </div>
-                    </div>
-                    <div class="artist-detail-item" style="margin-top: 1rem;">
-                        <span class="artist-detail-label">Expertise:</span>
-                        <div class="artist-detail-value">${artist.expertise}</div>
-                    </div>
-                    ${artist.bio ? `
-                        <div class="artist-detail-item" style="margin-top: 1rem;">
-                            <span class="artist-detail-label">Bio:</span>
-                            <div class="artist-detail-value">${artist.bio}</div>
-                        </div>
-                    ` : ''}
-                `;
-                artistsList.appendChild(artistCard);
-            });
-        }
-
-        function editArtist(index) {
-            showToast('Info', 'Edit artist functionality - coming soon', 'info');
-        }
-
-        function deleteArtist(index) {
-            if (confirm('Are you sure you want to delete this artist?')) {
-                artists.splice(index, 1);
-                renderArtists();
-                showToast('Success', 'Artist deleted successfully!', 'success');
-            }
-        }
+        });
     </script>
