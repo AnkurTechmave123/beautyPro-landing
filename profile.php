@@ -1,0 +1,865 @@
+<?php include "header.php" ?>
+
+<style>
+  header {
+    background: #000;
+  }
+</style>
+ <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- <div class="sidebar-header">
+                <h5 class="sidebar-title">Profile Management</h5>
+                <p class="sidebar-subtitle">Pharmaceutical Tattoo Artist</p>
+            </div> -->
+            <div class="sidebar-menu">
+                <button class="menu-item active" data-section="profile">
+                    <i class="fas fa-user"></i>
+                    Profile Information
+                </button>
+                <button class="menu-item" data-section="shop">
+                    <i class="fas fa-store"></i>
+                    Shop Information
+                </button>
+                <button class="menu-item" data-section="gallery">
+                    <i class="fas fa-images"></i>
+                    Work Gallery
+                </button>
+                <button class="menu-item" data-section="artists">
+                    <i class="fas fa-users"></i>
+                    Our Artists
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Profile Information Section -->
+            <div id="profile" class="content-section active">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Profile Information</h2>
+                        <p class="content-subtitle">Manage your personal and professional details</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-secondary-custom btn-custom" onclick="cancelChanges()">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                        <button class="btn-primary-custom btn-custom" onclick="saveProfile()">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Image Section -->
+                <div class="form-card">
+                    <h5 class="card-title">Profile Picture</h5>
+                    <div class="profile-image-section">
+                        <div class="profile-image-container">
+                            <div class="profile-image-placeholder" id="profileImagePreview">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="image-upload-btn" onclick="document.getElementById('profileImageInput').click()">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <input type="file" id="profileImageInput" class="hidden-file-input" accept="image/*" onchange="handleProfileImageUpload(event)">
+                        </div>
+                        <div class="image-upload-info">
+                            <h6>Upload Profile Picture</h6>
+                            <p>Choose a professional photo that represents you. Recommended size: 400x400px</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="form-card">
+                    <h5 class="card-title">Personal Details</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Category *</label>
+                                <select class="form-control" id="category">
+                                    <option value="">Select Category</option>
+                                    <option value="pharmaceutical">Pharmaceutical Tattoo</option>
+                                    <option value="medical">Medical Tattoo</option>
+                                    <option value="cosmetic">Cosmetic Tattoo</option>
+                                    <option value="therapeutic">Therapeutic Tattoo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bio / Experience</label>
+                        <textarea class="form-control" id="bio" rows="4" placeholder="Tell us about your experience and expertise in pharmaceutical tattooing..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Address Information -->
+                <div class="form-card">
+                    <h5 class="card-title">Address Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Address Line 1 *</label>
+                                <input type="text" class="form-control" id="address1" placeholder="Street address">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Address Line 2</label>
+                                <input type="text" class="form-control" id="address2" placeholder="Apartment, suite, etc.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">City *</label>
+                                <input type="text" class="form-control" id="city" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">State *</label>
+                                <input type="text" class="form-control" id="state" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Zip Code *</label>
+                                <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Information Section -->
+            <div id="shop" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Shop Information</h2>
+                        <p class="content-subtitle">Manage your shop details and location</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-secondary-custom btn-custom" onclick="cancelShopChanges()">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                        <button class="btn-primary-custom btn-custom" onclick="saveShopInfo()">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Shop Details -->
+                <div class="form-card">
+                    <h5 class="card-title">Shop Details</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Shop Name *</label>
+                                <input type="text" class="form-control" id="shopName" placeholder="Enter shop name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Shop Email *</label>
+                                <input type="email" class="form-control" id="shopEmail" placeholder="Enter shop email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Shop Phone *</label>
+                        <input type="tel" class="form-control" id="shopPhone" placeholder="Enter shop phone number">
+                    </div>
+                </div>
+
+                <!-- Shop Address -->
+                <div class="form-card">
+                    <h5 class="card-title">Shop Address</h5>
+                    <div class="form-group">
+                        <label class="form-label">Store Address *</label>
+                        <textarea class="form-control" id="storeAddress" rows="3" placeholder="Enter complete store address"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Country *</label>
+                                <select class="form-control" id="shopCountry">
+                                    <option value="">Select Country</option>
+                                    <option value="us">United States</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="au">Australia</option>
+                                    <option value="de">Germany</option>
+                                    <option value="fr">France</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">City *</label>
+                                <input type="text" class="form-control" id="shopCity" placeholder="Enter city">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Gallery Section -->
+            <div id="gallery" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Work Gallery</h2>
+                        <p class="content-subtitle">Showcase your pharmaceutical tattoo work</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary-custom btn-custom" onclick="openUploadModal()">
+                            <i class="fas fa-plus"></i>
+                            Upload Work
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Upload Area -->
+                <div class="form-card">
+                    <div class="upload-area" onclick="openUploadModal()">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h5>Upload Your Work</h5>
+                        <p>Click here to upload images of your pharmaceutical tattoo work</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="form-card">
+                    <h5 class="card-title">Your Work Portfolio</h5>
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Gallery items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artists Section -->
+            <div id="artists" class="content-section">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title">Our Artists</h2>
+                        <p class="content-subtitle">Manage your team of pharmaceutical tattoo artists</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary-custom btn-custom" onclick="openArtistModal()">
+                            <i class="fas fa-plus"></i>
+                            Add Artist
+                        </button>
+                    </div>
+                </div>
+
+                <div id="artistsList">
+                    <!-- Artists will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Upload Work Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Work</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Image *</label>
+                        <input type="file" class="form-control" id="workImage" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-control" id="workTitle" placeholder="Enter work title">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="workDescription" rows="3" placeholder="Describe the work..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="uploadWork()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artist Modal -->
+    <div class="modal fade" id="artistModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Artist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Artist Image Upload -->
+                    <div class="form-group">
+                        <label class="form-label">Artist Photo</label>
+                        <div class="profile-image-section">
+                            <div class="profile-image-container">
+                                <div class="profile-image-placeholder" id="artistImagePreview">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="image-upload-btn" onclick="document.getElementById('artistImageInput').click()">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <input type="file" id="artistImageInput" class="hidden-file-input" accept="image/*" onchange="handleArtistImageUpload(event)">
+                            </div>
+                            <div class="image-upload-info">
+                                <h6>Upload Artist Photo</h6>
+                                <p>Choose a professional photo of the artist</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Artist Name *</label>
+                                <input type="text" class="form-control" id="artistName" placeholder="Enter artist name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="artistEmail" placeholder="Enter artist email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Phone *</label>
+                                <input type="tel" class="form-control" id="artistPhone" placeholder="Enter phone number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Years of Experience *</label>
+                                <input type="number" class="form-control" id="artistExperience" placeholder="Years of experience" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Expertise *</label>
+                        <textarea class="form-control" id="artistExpertise" rows="3" placeholder="Describe areas of expertise..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bio</label>
+                        <textarea class="form-control" id="artistBio" rows="3" placeholder="Artist biography..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="saveArtist()">Save Artist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Work Modal -->
+    <div class="modal fade" id="editWorkModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Work</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-control" id="editWorkTitle">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="editWorkDescription" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary-custom btn-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-custom btn-custom" onclick="updateWork()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php include "footer.php" ?>
+
+<script>
+        // Global variables
+        let galleryWorks = [];
+        let artists = [];
+        let currentEditIndex = -1;
+        let currentArtistImage = null;
+        let currentProfileImage = null;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Set up menu navigation
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    switchSection(this.dataset.section);
+                    setActiveMenuItem(this);
+                });
+            });
+
+            // Load sample data
+            loadSampleData();
+            renderGallery();
+            renderArtists();
+        }
+
+        function switchSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function setActiveMenuItem(activeItem) {
+            // Remove active class from all menu items
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+
+            // Add active class to clicked item
+            activeItem.classList.add('active');
+        }
+
+        function loadSampleData() {
+            // Sample gallery works
+            galleryWorks = [
+                {
+                    id: 1,
+                    title: "Pharmaceutical Nipple Reconstruction",
+                    description: "Advanced areola reconstruction using pharmaceutical-grade pigments for post-mastectomy patients",
+                    image: "https://images.pexels.com/photos/5066613/pexels-photo-5066613.jpeg?auto=compress&cs=tinysrgb&w=400"
+                },
+                {
+                    id: 2,
+                    title: "Scar Camouflage Treatment",
+                    description: "Medical tattoo to blend surgical scars with natural skin tone using specialized techniques",
+                    image: "https://images.pexels.com/photos/5069433/pexels-photo-5069433.jpeg?auto=compress&cs=tinysrgb&w=400"
+                },
+                {
+                    id: 3,
+                    title: "Eyebrow Reconstruction",
+                    description: "Hair-like strokes for chemotherapy patients using pharmaceutical-grade pigments",
+                    image: "https://images.pexels.com/photos/5069452/pexels-photo-5069452.jpeg?auto=compress&cs=tinysrgb&w=400"
+                }
+            ];
+
+            // Sample artists
+            artists = [
+                {
+                    id: 1,
+                    name: "Dr. Sarah Johnson",
+                    email: "sarah.johnson@example.com",
+                    phone: "+1 (555) 123-4567",
+                    experience: 8,
+                    expertise: "Pharmaceutical tattoos, Areola reconstruction, Medical pigmentation",
+                    bio: "Board-certified specialist in pharmaceutical tattooing with extensive experience in post-surgical reconstruction.",
+                    image: "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=200"
+                },
+                {
+                    id: 2,
+                    name: "Michael Chen",
+                    email: "michael.chen@example.com",
+                    phone: "+1 (555) 987-6543",
+                    experience: 5,
+                    expertise: "Scar camouflage, Vitiligo treatment, Skin tone matching",
+                    bio: "Expert in therapeutic tattooing with a focus on helping patients regain confidence through advanced techniques.",
+                    image: "https://images.pexels.com/photos/6303773/pexels-photo-6303773.jpeg?auto=compress&cs=tinysrgb&w=200"
+                }
+            ];
+        }
+
+        // Profile image upload handler
+        function handleProfileImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentProfileImage = e.target.result;
+                    const preview = document.getElementById('profileImagePreview');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Profile" class="profile-image">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Artist image upload handler
+        function handleArtistImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentArtistImage = e.target.result;
+                    const preview = document.getElementById('artistImagePreview');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Artist" class="profile-image">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Toast notification system
+        function showToast(title, message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast-notification toast-${type}`;
+            
+            const iconMap = {
+                success: 'fas fa-check',
+                error: 'fas fa-times',
+                info: 'fas fa-info'
+            };
+
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i class="${iconMap[type]}"></i>
+                </div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            toastContainer.appendChild(toast);
+
+            // Show toast with animation
+            setTimeout(() => toast.classList.add('show'), 100);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        function saveProfile() {
+            const profileData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                category: document.getElementById('category').value,
+                bio: document.getElementById('bio').value,
+                address1: document.getElementById('address1').value,
+                address2: document.getElementById('address2').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zipCode: document.getElementById('zipCode').value,
+                profileImage: currentProfileImage
+            };
+
+            // Basic validation
+            if (!profileData.fullName || !profileData.email || !profileData.phone) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Simulate save operation
+            showToast('Success', 'Profile updated successfully!', 'success');
+            console.log('Profile saved:', profileData);
+        }
+
+        function cancelChanges() {
+            showToast('Info', 'Changes cancelled', 'info');
+        }
+
+        function saveShopInfo() {
+            const shopData = {
+                shopName: document.getElementById('shopName').value,
+                shopEmail: document.getElementById('shopEmail').value,
+                shopPhone: document.getElementById('shopPhone').value,
+                storeAddress: document.getElementById('storeAddress').value,
+                shopCountry: document.getElementById('shopCountry').value,
+                shopCity: document.getElementById('shopCity').value
+            };
+
+            // Basic validation
+            if (!shopData.shopName || !shopData.shopEmail || !shopData.shopPhone) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Simulate save operation
+            showToast('Success', 'Shop information updated successfully!', 'success');
+            console.log('Shop info saved:', shopData);
+        }
+
+        function cancelShopChanges() {
+            showToast('Info', 'Shop changes cancelled', 'info');
+        }
+
+        function openUploadModal() {
+            // Clear form
+            document.getElementById('workTitle').value = '';
+            document.getElementById('workDescription').value = '';
+            document.getElementById('workImage').value = '';
+            
+            const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
+            modal.show();
+        }
+
+        function uploadWork() {
+            const title = document.getElementById('workTitle').value;
+            const description = document.getElementById('workDescription').value;
+            const fileInput = document.getElementById('workImage');
+
+            if (!title || !fileInput.files[0]) {
+                showToast('Validation Error', 'Please fill in title and select an image', 'error');
+                return;
+            }
+
+            // Create new work object
+            const newWork = {
+                id: Date.now(),
+                title: title,
+                description: description,
+                image: URL.createObjectURL(fileInput.files[0])
+            };
+
+            galleryWorks.push(newWork);
+            renderGallery();
+
+            // Clear form and close modal
+            document.getElementById('workTitle').value = '';
+            document.getElementById('workDescription').value = '';
+            fileInput.value = '';
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
+            modal.hide();
+
+            showToast('Success', 'Work uploaded successfully!', 'success');
+        }
+
+        function renderGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            if (galleryWorks.length === 0) {
+                galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-muted); grid-column: 1 / -1;">No work uploaded yet. Click "Upload Work" to add your first piece.</p>';
+                return;
+            }
+
+            galleryWorks.forEach((work, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${work.image}" alt="${work.title}" class="gallery-image">
+                    <div class="gallery-content">
+                        <div class="gallery-title">${work.title}</div>
+                        <div class="gallery-description">${work.description}</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-actions">
+                            <button class="gallery-btn edit" onclick="editWork(${index})" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="gallery-btn delete" onclick="deleteWork(${index})" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        function editWork(index) {
+            currentEditIndex = index;
+            const work = galleryWorks[index];
+            
+            document.getElementById('editWorkTitle').value = work.title;
+            document.getElementById('editWorkDescription').value = work.description;
+            
+            const modal = new bootstrap.Modal(document.getElementById('editWorkModal'));
+            modal.show();
+        }
+
+        function updateWork() {
+            if (currentEditIndex === -1) return;
+
+            const title = document.getElementById('editWorkTitle').value;
+            if (!title) {
+                showToast('Validation Error', 'Please enter a title', 'error');
+                return;
+            }
+
+            galleryWorks[currentEditIndex].title = title;
+            galleryWorks[currentEditIndex].description = document.getElementById('editWorkDescription').value;
+
+            renderGallery();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editWorkModal'));
+            modal.hide();
+            
+            showToast('Success', 'Work updated successfully!', 'success');
+            currentEditIndex = -1;
+        }
+
+        function deleteWork(index) {
+            if (confirm('Are you sure you want to delete this work?')) {
+                galleryWorks.splice(index, 1);
+                renderGallery();
+                showToast('Success', 'Work deleted successfully!', 'success');
+            }
+        }
+
+        function openArtistModal() {
+            // Clear form
+            document.getElementById('artistName').value = '';
+            document.getElementById('artistEmail').value = '';
+            document.getElementById('artistPhone').value = '';
+            document.getElementById('artistExperience').value = '';
+            document.getElementById('artistExpertise').value = '';
+            document.getElementById('artistBio').value = '';
+            document.getElementById('artistImageInput').value = '';
+            document.getElementById('artistImagePreview').innerHTML = '<i class="fas fa-user"></i>';
+            currentArtistImage = null;
+            
+            const modal = new bootstrap.Modal(document.getElementById('artistModal'));
+            modal.show();
+        }
+
+        function saveArtist() {
+            const artistData = {
+                id: Date.now(),
+                name: document.getElementById('artistName').value,
+                email: document.getElementById('artistEmail').value,
+                phone: document.getElementById('artistPhone').value,
+                experience: parseInt(document.getElementById('artistExperience').value),
+                expertise: document.getElementById('artistExpertise').value,
+                bio: document.getElementById('artistBio').value,
+                image: currentArtistImage
+            };
+
+            if (!artistData.name || !artistData.email || !artistData.phone || !artistData.experience || !artistData.expertise) {
+                showToast('Validation Error', 'Please fill in all required fields', 'error');
+                return;
+            }
+
+            artists.push(artistData);
+            renderArtists();
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('artistModal'));
+            modal.hide();
+
+            showToast('Success', 'Artist added successfully!', 'success');
+        }
+
+        function renderArtists() {
+            const artistsList = document.getElementById('artistsList');
+            artistsList.innerHTML = '';
+
+            if (artists.length === 0) {
+                artistsList.innerHTML = '<div class="form-card"><p class="text-center" style="color: var(--text-muted);">No artists added yet. Click "Add Artist" to add your first team member.</p></div>';
+                return;
+            }
+
+            artists.forEach((artist, index) => {
+                const artistCard = document.createElement('div');
+                artistCard.className = 'artist-card';
+                artistCard.innerHTML = `
+                    <div class="artist-header">
+                        <div class="artist-info">
+                            ${artist.image ? 
+                                `<img src="${artist.image}" alt="${artist.name}" class="artist-avatar">` :
+                                `<div class="artist-avatar-placeholder"><i class="fas fa-user"></i></div>`
+                            }
+                            <div>
+                                <div class="artist-name">${artist.name}</div>
+                                <div class="artist-experience">${artist.experience} years experience</div>
+                            </div>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="gallery-btn edit" onclick="editArtist(${index})" title="Edit Artist">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="gallery-btn delete" onclick="deleteArtist(${index})" title="Delete Artist">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="artist-details">
+                        <div class="artist-detail-item">
+                            <span class="artist-detail-label">Email:</span>
+                            <div class="artist-detail-value">${artist.email}</div>
+                        </div>
+                        <div class="artist-detail-item">
+                            <span class="artist-detail-label">Phone:</span>
+                            <div class="artist-detail-value">${artist.phone}</div>
+                        </div>
+                    </div>
+                    <div class="artist-detail-item" style="margin-top: 1rem;">
+                        <span class="artist-detail-label">Expertise:</span>
+                        <div class="artist-detail-value">${artist.expertise}</div>
+                    </div>
+                    ${artist.bio ? `
+                        <div class="artist-detail-item" style="margin-top: 1rem;">
+                            <span class="artist-detail-label">Bio:</span>
+                            <div class="artist-detail-value">${artist.bio}</div>
+                        </div>
+                    ` : ''}
+                `;
+                artistsList.appendChild(artistCard);
+            });
+        }
+
+        function editArtist(index) {
+            showToast('Info', 'Edit artist functionality - coming soon', 'info');
+        }
+
+        function deleteArtist(index) {
+            if (confirm('Are you sure you want to delete this artist?')) {
+                artists.splice(index, 1);
+                renderArtists();
+                showToast('Success', 'Artist deleted successfully!', 'success');
+            }
+        }
+    </script>
