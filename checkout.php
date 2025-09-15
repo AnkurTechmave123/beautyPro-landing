@@ -3,6 +3,8 @@
   header {
     background: #000;
   }
+ 
+  
 </style>
 
 <!-- Checkout Page Start -->
@@ -47,7 +49,7 @@
               </div>
               <div class="form-group">
                 <label for="state">State</label>
-                 <input type="text" id="state" name="sate" placeholder="State" required>
+                 <input type="text" id="state" name="state" placeholder="State" required>
               </div>
               <div class="form-group">
                 <label for="zipCode">Zip Code</label>
@@ -145,7 +147,7 @@
           </div>
 
           <button class="place-order-btn" type="submit">
-            <span>Place Order</span>
+            <span>Make Payment</span>
             <i class="icofont-arrow-right"></i>
           </button>
 
@@ -160,20 +162,29 @@
 </section>
 <!-- Checkout Page End -->
 
+<!-- Success Modal -->
+ <div class="ModalSuccess">
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <h2>Awesome!</h2>
+    <p>User buy the subscription plan successfully and login and password sent to the email</p>
+    <a href="login.php" class="btn btn-primary" onclick="document.getElementById('successModal').style.display='none'">Continue</a>
+  </div>
+</div>
+ </div>
+
+
 <?php include "footer.php" ?>
 
 <script>
 // Payment method switching
 document.querySelectorAll('.payment-option').forEach(option => {
   option.addEventListener('click', function() {
-    // Remove active class from all options
     document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
     document.querySelectorAll('.payment-form').forEach(form => form.classList.remove('active'));
     
-    // Add active class to clicked option
     this.classList.add('active');
     
-    // Show corresponding form
     const method = this.dataset.method;
     document.querySelector(`.${method}-form`).classList.add('active');
   });
@@ -218,5 +229,13 @@ document.getElementById('cardNumber').addEventListener('input', function(e) {
 // CVV validation
 document.getElementById('cvv').addEventListener('input', function(e) {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
+});
+
+// Handle place order button click
+document.querySelector('.place-order-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  // Simulate successful payment (replace with actual payment processing logic)
+  const successModal = document.getElementById('successModal');
+  successModal.style.display = 'flex';
 });
 </script>

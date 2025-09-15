@@ -28,27 +28,16 @@ p.ParaTrusted {
     color: transparent;
 }
 .task_app_section .task_img::before {
-    content: "";
-    position: absolute;
-    left: 42%;
-    top: 50%;
-    z-index: -1;
-    transform: translate(-50%, -50%) rotate(-9deg);
-    width: 380px;
-    height: 380px;
-    /* background-color: #FFC107; */
+
+
     background: linear-gradient(45deg, #f0bf43, #daa520);
-    border-radius: 30px;
+ 
 }
 .task_app_section .task_block {
-    max-width: 1370px;
-    margin: 0 auto;
+   
     background-color: #fef9eb;
-    padding: 60px 150px;
-    position: sticky;
-    z-index: 99;
-    border-radius: 30px;
-    overflow: hidden;
+    /* padding: 60px 150px; */
+   
 }
 .task_app_section .task_block .title_badge {
     background: #13a889;
@@ -223,17 +212,17 @@ border: 1px solid #ecba3d;
     margin: 0;
     color: #d7d7d7;
 } */
- .download_app .task_block {
-    max-width: 1370px;
-    margin: 0 auto;
+.download_app .task_block {
+    /* max-width: 1370px; */
+    /* margin: 0 auto; */
     background: #f9f9f9;
     background-image: url(../images/line_pattern_dark.png);
-    background-repeat: repeat;
-    padding: 0 150px;
-    position: sticky;
-    z-index: 99;
-    border-radius: 30px;
-    overflow: hidden;
+    /* background-repeat: repeat; */
+    /* padding: 0 150px; */
+    /* position: sticky; */
+    /* z-index: 99; */
+    /* border-radius: 30px; */
+    /* overflow: hidden; */
 }
 .download_app .title_badge {
     background: #FFC107;
@@ -302,4 +291,91 @@ footer {
 .footer_overlay img {
     width: 100%;
     display: none;
+}
+
+
+@media screen and (max-width: 767px) {
+    .banner_section .banner_text {
+        margin-top: 20px !important;
+        padding: 0 !important;
+    }
+    p.ParaTrusted {
+    font-size: 16px;
+    width: 100%;
+    margin: 0 auto;
+}
+section.row_am.our_client {
+    padding: 30px 0 0;
+}
+.task_app_section .task_block {
+    padding: 30px 35px;
+}
+.task_app_section .task_text .section_title .icon {
+    margin: 30px 0 35px 0;
+}
+.task_app_section .task_text .section_title {
+    text-align: left;
+}
+section#AboutUssection {
+    padding-top: 0;
+}
+.section_title h2 {
+    font-size: 25px;
+}
+.about_section .app_statstic li .text {
+    width: 150px;
+    height: 150px;
+}
+.review_section .coustomer_info .star {
+    justify-content: space-around;
+}
+.review_section .review_side .review_block .coustomer_info {
+    display: flex;
+    align-items: self-start;
+    justify-content: left;
+    margin: 0 0 30px 0;
+    flex-direction: column;
+}
+.review_section .coustomer_info .avtar .text {
+    width: calc(100% - 80px);
+}
+.review_section .review_side .review_block .coustomer_info {
+    margin: 0 0 15px 0;
+  }
+  
+.review_section .review_side .review_block {
+     padding: 30px;
+   }
+   .review_section .positive_inner {
+    padding: 0px 0 0px 0;
+}
+footer {
+    background-color: var(--dark-black);
+    padding: 80px 0 30px;
+    margin-top: 0px;
+    text-align: left;
+}
+footer .contact_info {
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+}
+footer .social_media, footer .download_side .app_btn {
+    justify-content: center;
+    align-items: start;
+}
+footer .download_side {
+    text-align: left;
+    padding-top: 40px;
+}
+footer .social_media, footer .download_side .app_btn {
+    justify-content: left;
+    align-items: start;
+}
+footer .download_side .app_btn li a {
+    padding: 10px 14px;
+}
+footer .download_side .app_btn {
+    flex-direction: row !important;
+}
 }

@@ -763,7 +763,7 @@
                         </li>
                       </ul>
                       <div class="btn_block">
-                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -801,7 +801,7 @@
                         </li>
                       </ul>
                       <div class="btn_block white_btn">
-                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -838,7 +838,7 @@
                         </li>
                       </ul>
                       <div class="btn_block">
-                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
                     </div>
@@ -884,7 +884,7 @@
                     </ul>
 
                     <div class="btn_block">
-                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                       </div>
 
@@ -923,7 +923,7 @@
                       </li>
                     </ul>
                     <div class="btn_block white_btn">
-                      <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                      <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                       <div class="btn_bottom"></div>
                     </div>
                   </div>
@@ -961,7 +961,7 @@
                     </ul>
                     
                     <div class="btn_block">
-                        <a href="#" class="btn puprple_btn ml-0">Choose Plan</a>
+                        <a href="checkout.php" class="btn puprple_btn ml-0">Choose Plan</a>
                         <div class="btn_bottom"></div>
                     </div>
                   </div>

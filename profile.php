@@ -5,7 +5,10 @@
     background: #000;
   }
 </style>
- <div class="main-container">
+<!-- Add Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="main-container">
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-menu">
@@ -50,7 +53,8 @@
                     <div class="view-mode-header">
                         <h5 class="view-mode-title">Personal Information</h5>
                     </div>
-                    <div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+                    <div class="view-mode-body">
+                        <div class="profileBox" style="">
                         <div id="profileAvatarView" class="view-mode-avatar-placeholder">
                             <i class="fas fa-user"></i>
                         </div>
@@ -77,6 +81,9 @@
                         <span class="view-mode-label">Bio / Experience</span>
                         <span class="view-mode-value" id="profileBioView">Not set</span>
                     </div>
+
+                    </div>
+                    
                 </div>
 
                 <!-- Address View -->
@@ -84,7 +91,8 @@
                     <div class="view-mode-header">
                         <h5 class="view-mode-title">Address Information</h5>
                     </div>
-                    <div class="view-mode-grid">
+                    <div class="view-mode-body">
+                        <div class="view-mode-grid">
                         <div class="view-mode-item">
                             <span class="view-mode-label">Address</span>
                             <span class="view-mode-value" id="profileAddressView">Not set</span>
@@ -102,6 +110,9 @@
                             <span class="view-mode-value" id="profileZipView">Not set</span>
                         </div>
                     </div>
+
+                    </div>
+                    
                 </div>
             </div>
 
@@ -135,7 +146,8 @@
                     <div class="view-mode-header">
                         <h5 class="view-mode-title">Shop Details</h5>
                     </div>
-                    <div class="view-mode-grid">
+                    <div class="view-mode-body">
+                        <div class="view-mode-grid">
                         <div class="view-mode-item">
                             <span class="view-mode-label">Shop Name</span>
                             <span class="view-mode-value" id="shopNameView">Not set</span>
@@ -148,11 +160,15 @@
                             <span class="view-mode-label">Phone</span>
                             <span class="view-mode-value" id="shopPhoneView">Not set</span>
                         </div>
-                        <div class="view-mode-item">
+                      
+                        </div>
+                          <div class="view-mode-item mt-3">
                             <span class="view-mode-label">Description</span>
                             <span class="view-mode-value" id="shopDescriptionView">Not set</span>
                         </div>
+
                     </div>
+                    
                 </div>
 
                 <!-- Shop Address View -->
@@ -160,7 +176,8 @@
                     <div class="view-mode-header">
                         <h5 class="view-mode-title">Shop Address</h5>
                     </div>
-                    <div class="view-mode-grid">
+                      <div class="view-mode-body">
+                        <div class="view-mode-grid">
                         <div class="view-mode-item">
                             <span class="view-mode-label">Address</span>
                             <span class="view-mode-value" id="shopAddressView">Not set</span>
@@ -182,6 +199,9 @@
                             <span class="view-mode-value" id="shopCountryView">Not set</span>
                         </div>
                     </div>
+
+                      </div>
+                    
                 </div>
 
                 <!-- Shop Schedule View -->
@@ -189,9 +209,13 @@
                     <div class="view-mode-header">
                         <h5 class="view-mode-title">Availability Schedule</h5>
                     </div>
-                    <div id="shopScheduleView">
-                        <p style="color: var(--text-muted);">No schedule set</p>
-                    </div>
+                     <div class="view-mode-body">
+                        <div id="shopScheduleView">
+                            <p style="color: var(--text-muted);">No schedule set</p>
+                        </div>
+
+                     </div>
+                    
                 </div>
             </div>
 
@@ -245,11 +269,11 @@
 
     <!-- Profile Edit Modal -->
     <div class="modal fade" id="profileModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Profile Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"><iconify-icon icon="iconoir:cancel"></iconify-icon></button>
                 </div>
                 <div class="modal-body">
                     <!-- Profile Image Section -->
@@ -358,11 +382,11 @@
 
     <!-- Shop Edit Modal -->
     <div class="modal fade" id="shopModal" tabindex="-1">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Shop Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"><iconify-icon icon="iconoir:cancel"></iconify-icon></button>
                 </div>
                 <div class="modal-body">
                     <!-- Shop Banner Upload -->
@@ -381,36 +405,35 @@
                     </div>
 
                     <!-- Shop Details -->
-                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Details</h6>
+                    <!-- <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Details</h6> -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Shop Name *</label>
                                 <input type="text" class="form-control" id="shopName" placeholder="Enter shop name">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Shop Email *</label>
                                 <input type="email" class="form-control" id="shopEmail" placeholder="Enter shop email">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Shop Phone *</label>
                                 <input type="tel" class="form-control" id="shopPhone" placeholder="Enter shop phone number">
                             </div>
                         </div>
                     </div>
+                   
                     <div class="form-group">
                         <label class="form-label">Shop Description</label>
                         <textarea class="form-control" id="shopDescription" rows="3" placeholder="Describe your shop and services..."></textarea>
                     </div>
 
                     <!-- Shop Address -->
-                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Address</h6>
+                    <!-- <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Shop Address</h6> -->
                     <div class="form-group">
                         <label class="form-label">Store Address *</label>
                         <textarea class="form-control" id="storeAddress" rows="3" placeholder="Enter complete store address"></textarea>
@@ -449,7 +472,7 @@
                     </div>
 
                     <!-- Availability Schedule -->
-                    <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Availability Schedule</h6>
+                    <h6 style="margin-top: 2rem; margin-bottom: 1rem;“M" color: var(--text-primary);">Availability Schedule</h6>
                     <div class="schedule-container">
                         <div id="scheduleList">
                             <!-- Schedule items will be added here -->
@@ -473,7 +496,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Upload Gallery Images</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"><iconify-icon icon="iconoir:cancel"></iconify-icon>
+                </button>
                 </div>
                 <div class="modal-body">
                     <div class="modern-upload-area" id="modernUploadArea">
@@ -496,7 +520,7 @@
 
     <!-- Artist Modal -->
     <div class="modal fade" id="artistModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="artistModalTitle">Add Artist</h5>
@@ -580,6 +604,9 @@
 
 <?php include "footer.php" ?>
 
+<!-- Add Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
         // Global variables
         let galleryWorks = [];
@@ -627,6 +654,9 @@
         });
 
         function initializeApp() {
+            // Initialize Select2 for all select elements
+            $('select').select2();
+
             // Set up menu navigation
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => {
@@ -666,19 +696,67 @@
         }
 
         function loadSampleData() {
+            // Sample profile data
+            profileData = {
+                fullName: 'John Doe',
+                email: 'john.doe@example.com',
+                phone: '+1 (555) 123-4567',
+                category: 'pharmaceutical',
+                bio: 'Certified pharmaceutical tattoo artist with over 10 years of experience in medical tattooing.',
+                address1: '123 Main Street',
+                address2: 'Suite 101',
+                city: 'Springfield',
+                state: 'IL',
+                zipCode: '62701',
+                profileImage: null
+            };
+
+            // Sample shop data
+            shopData = {
+                shopName: 'MediTattoo Studio',
+                shopEmail: 'contact@meditattoo.com',
+                shopPhone: '+1 (555) 987-6543',
+                shopDescription: 'Specializing in pharmaceutical and medical tattoos to enhance patient confidence and recovery.',
+                storeAddress: '456 Health Avenue',
+                shopCity: 'Springfield',
+                shopState: 'IL',
+                shopPostal: '62702',
+                shopCountry: 'us',
+                shopBanner: null,
+                schedule: [
+                    { id: 1, day: 'monday', openTime: '09:00', closeTime: '17:00' },
+                    { id: 2, day: 'tuesday', openTime: '09:00', closeTime: '17:00' },
+                    { id: 3, day: 'wednesday', openTime: '09:00', closeTime: '17:00' },
+                    { id: 4, day: 'thursday', openTime: '09:00', closeTime: '17:00' },
+                    { id: 5, day: 'friday', openTime: '09:00', closeTime: '17:00' }
+                ]
+            };
+
             // Sample gallery works
             galleryWorks = [
                 {
                     id: 1,
-                    image: "https://images.pexels.com/photos/5066613/pexels-photo-5066613.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    image: "images/new-image/w1.png"
                 },
                 {
                     id: 2,
-                    image: "https://images.pexels.com/photos/5069433/pexels-photo-5069433.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    image: "images/new-image/w2.png"
                 },
                 {
                     id: 3,
-                    image: "https://images.pexels.com/photos/5069452/pexels-photo-5069452.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    image: "images/new-image/w3.png"
+                },
+                  {
+                    id: 4,
+                    image: "images/new-image/w4.png"
+                },
+                  {
+                    id: 5,
+                    image: "images/new-image/w5.png"
+                },
+                  {
+                    id: 6,
+                    image: "images/new-image/w6.png"
                 }
             ];
 
@@ -686,13 +764,13 @@
             artists = [
                 {
                     id: 1,
-                    name: "Dr. Sarah Johnson",
+                    name: "Sarah Johnson",
                     email: "sarah.johnson@example.com",
                     phone: "+1 (555) 123-4567",
                     experience: 8,
                     expertise: "Pharmaceutical tattoos, Areola reconstruction, Medical pigmentation",
                     bio: "Board-certified specialist in pharmaceutical tattooing with extensive experience in post-surgical reconstruction.",
-                    image: "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    image: "images/review1.png"
                 },
                 {
                     id: 2,
@@ -702,7 +780,7 @@
                     experience: 5,
                     expertise: "Scar camouflage, Vitiligo treatment, Skin tone matching",
                     bio: "Expert in therapeutic tattooing with a focus on helping patients regain confidence through advanced techniques.",
-                    image: "https://images.pexels.com/photos/6303773/pexels-photo-6303773.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    image: "images/review2..png"
                 }
             ];
         }
@@ -727,6 +805,9 @@
 
             const modal = new bootstrap.Modal(document.getElementById('profileModal'));
             modal.show();
+
+            // Re-initialize Select2 for the category dropdown in the modal
+            $('#category').select2();
         }
 
         function handleProfileImageUpload(event) {
@@ -817,6 +898,10 @@
 
             const modal = new bootstrap.Modal(document.getElementById('shopModal'));
             modal.show();
+
+            // Re-initialize Select2 for the country dropdown and schedule dropdowns
+            $('#shopCountry').select2();
+            $('.schedule-day').select2();
         }
 
         function handleShopBannerUpload(event) {
@@ -841,11 +926,17 @@
             };
             scheduleItems.push(newSchedule);
             renderScheduleItems();
+
+            // Re-initialize Select2 for newly added schedule dropdown
+            $('.schedule-day').select2();
         }
 
         function removeScheduleItem(id) {
             scheduleItems = scheduleItems.filter(item => item.id !== id);
             renderScheduleItems();
+
+            // Re-initialize Select2 for remaining schedule dropdowns
+            $('.schedule-day').select2();
         }
 
         function renderScheduleItems() {
@@ -856,7 +947,8 @@
                 const scheduleDiv = document.createElement('div');
                 scheduleDiv.className = 'schedule-item';
                 scheduleDiv.innerHTML = `
-                    <select class="form-control schedule-day" onchange="updateScheduleItem(${item.id}, 'day', this.value)">
+                 <div class="selectBox">
+                  <select class="form-control schedule-day" onchange="updateScheduleItem(${item.id}, 'day', this.value)">
                         <option value="">Select Day</option>
                         <option value="monday" ${item.day === 'monday' ? 'selected' : ''}>Monday</option>
                         <option value="tuesday" ${item.day === 'tuesday' ? 'selected' : ''}>Tuesday</option>
@@ -866,6 +958,8 @@
                         <option value="saturday" ${item.day === 'saturday' ? 'selected' : ''}>Saturday</option>
                         <option value="sunday" ${item.day === 'sunday' ? 'selected' : ''}>Sunday</option>
                     </select>
+                 </div>
+                   
                     <div class="schedule-time">
                         <input type="time" class="form-control" value="${item.openTime}" onchange="updateScheduleItem(${item.id}, 'openTime', this.value)">
                         <span>to</span>
@@ -873,12 +967,15 @@
                     </div>
                     <div class="schedule-actions">
                         <button type="button" class="btn-remove-schedule" onclick="removeScheduleItem(${item.id})">
-                            <i class="fas fa-trash"></i>
+                          <iconify-icon icon="material-symbols:delete-outline-rounded"></iconify-icon>
                         </button>
                     </div>
                 `;
                 scheduleList.appendChild(scheduleDiv);
             });
+
+            // Initialize Select2 for schedule dropdowns
+            $('.schedule-day').select2();
         }
 
         function updateScheduleItem(id, field, value) {
@@ -1076,7 +1173,7 @@
                     <img src="${work.image}" alt="Gallery Image" class="modern-gallery-image" onclick="openFancyPopup('${work.image}')">
                     <div class="modern-gallery-actions">
                         <button class="modern-action-btn delete" onclick="deleteGalleryImage(${index})" title="Delete">
-                            <i class="fas fa-trash"></i>
+                           <iconify-icon icon="material-symbols:delete-outline-rounded"></iconify-icon>
                         </button>
                     </div>
                 `;
@@ -1201,10 +1298,10 @@
                 artistCard.innerHTML = `
                     <div class="modern-artist-actions">
                         <button class="modern-action-btn edit" onclick="editArtist(${index})" title="Edit Artist">
-                            <i class="fas fa-edit"></i>
+                            <iconify-icon icon="cuida:edit-outline"></iconify-icon>
                         </button>
                         <button class="modern-action-btn delete" onclick="deleteArtist(${index})" title="Delete Artist">
-                            <i class="fas fa-trash"></i>
+                            <iconify-icon icon="material-symbols:delete-outline-rounded"></iconify-icon>
                         </button>
                     </div>
                     <div class="modern-artist-header">

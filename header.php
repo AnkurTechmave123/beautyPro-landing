@@ -87,7 +87,7 @@
             </li>
             <li class="nav-item">
               <div class="btn_block">
-                <a class="nav-link dark_btn" href="#">Login Now</a>
+                <a class="nav-link dark_btn" href="login.php">Login Now</a>
                 <div class="btn_bottom"></div>
               </div>
             </li>
