@@ -160,18 +160,18 @@
         }
 
         /* Buttons */
-        .btn-custom {
-            padding: 0.625rem 1.25rem;
-            border-radius: var(--radius-md);
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+       .btn-custom {
+    padding: 8px 15px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
       .btn-primary-custom {
     background-color: var(--primary-color);

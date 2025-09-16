@@ -11,8 +11,12 @@
 <body>
     <div class="login-container">
         <div class="login-card">
+             <div id="backButtonContainer" style="display: none;">
+                        <button class="back-btn" id="backBtn">← Back</button>
+                    </div>
                     <div class="logo"><a href="index.php"><img src="images/new-image/beautyPro.png" alt=""></a></div>
-                    <h1 class="welcome-title">Welcome to Back !</h1>
+                   
+                    <h1 class="welcome-title" id="welcomeTitle">Welcome  Back !</h1>
                     <!-- <p class="welcome-subtitle">Join our sustainable community</p> -->
                     
                     <div class="step-indicator">
@@ -53,7 +57,6 @@
 
                     <!-- Step 2: Forgot Password - Email Entry -->
                     <div class="form-step" id="forgotPasswordForm">
-                        <button class="back-btn" onclick="showLogin()">← Back to Login</button>
                         <h3 style="margin-bottom: 20px; text-align: center;">Forgot Password</h3>
                         <p style="color: #94a3b8; text-align: center; margin-bottom: 30px;">Enter your email address and we'll send you an OTP to reset your password.</p>
                         
@@ -68,18 +71,17 @@
 
                     <!-- Step 3: OTP Verification -->
                     <div class="form-step" id="otpForm">
-                        <button class="back-btn" onclick="showForgotPassword()">← Back</button>
                         <h3 style="margin-bottom: 20px; text-align: center;">Enter OTP</h3>
                         <p style="color: #94a3b8; text-align: center; margin-bottom: 30px;">We've sent a 6-digit code to <span id="otpEmail"></span></p>
                         
                         <form id="otpFormElement">
                             <div class="otp-container">
-                                <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="moveToNext(this, 'otp2')" onkeydown="moveToPrev(this, null)">
-                                <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="moveToNext(this, 'otp3')" onkeydown="moveToPrev(this, 'otp1')">
-                                <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="moveToNext(this, 'otp4')" onkeydown="moveToPrev(this, 'otp2')">
-                                <input type="text" class="otp-input" maxlength="1" id="otp4" oninput="moveToNext(this, 'otp5')" onkeydown="moveToPrev(this, 'otp3')">
-                                <input type="text" class="otp-input" maxlength="1" id="otp5" oninput="moveToNext(this, 'otp6')" onkeydown="moveToPrev(this, 'otp4')">
-                                <input type="text" class="otp-input" maxlength="1" id="otp6" oninput="moveToNext(this, null)" onkeydown="moveToPrev(this, 'otp5')">
+                                <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="moveToNext(this, 'otp2')" onkeydown="moveToPrev(event, this, null)">
+                                <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="moveToNext(this, 'otp3')" onkeydown="moveToPrev(event, this, 'otp1')">
+                                <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="moveToNext(this, 'otp4')" onkeydown="moveToPrev(event, this, 'otp2')">
+                                <input type="text" class="otp-input" maxlength="1" id="otp4" oninput="moveToNext(this, 'otp5')" onkeydown="moveToPrev(event, this, 'otp3')">
+                                <input type="text" class="otp-input" maxlength="1" id="otp5" oninput="moveToNext(this, 'otp6')" onkeydown="moveToPrev(event, this, 'otp4')">
+                                <input type="text" class="otp-input" maxlength="1" id="otp6" oninput="moveToNext(this, null)" onkeydown="moveToPrev(event, this, 'otp5')">
                             </div>
                             <button type="submit" class="btn-primary">Verify OTP</button>
                             <button type="button" class="btn-secondary" onclick="resendOTP()">Resend OTP</button>
@@ -88,7 +90,6 @@
 
                     <!-- Step 4: Reset Password -->
                     <div class="form-step" id="resetPasswordForm">
-                        <button class="back-btn" onclick="showOtpForm()">← Back</button>
                         <h3 style="margin-bottom: 20px; text-align: center;">Create New Password</h3>
                         <p style="color: #94a3b8; text-align: center; margin-bottom: 30px;">Enter your new password below.</p>
                         
@@ -154,6 +155,33 @@
             
             currentStep = stepNumber;
             updateStepIndicator();
+
+            // Handle welcome title
+            const welcomeTitle = document.getElementById('welcomeTitle');
+            if (stepNumber === 1) {
+                welcomeTitle.style.display = 'block';
+            } else {
+                welcomeTitle.style.display = 'none';
+            }
+
+            // Handle back button
+            const backContainer = document.getElementById('backButtonContainer');
+            if (stepNumber === 1 || stepNumber === 5) {
+                backContainer.style.display = 'none';
+            } else {
+                backContainer.style.display = 'block';
+                const backBtn = document.getElementById('backBtn');
+                if (stepNumber === 2) {
+                    backBtn.textContent = '← Back to Login';
+                    backBtn.onclick = showLogin;
+                } else if (stepNumber === 3) {
+                    backBtn.textContent = '← Back';
+                    backBtn.onclick = showForgotPassword;
+                } else if (stepNumber === 4) {
+                    backBtn.textContent = '← Back';
+                    backBtn.onclick = showOtpForm;
+                }
+            }
         }
 
         function updateStepIndicator() {
@@ -234,7 +262,7 @@
             }
         }
 
-        function moveToPrev(current, prevId) {
+        function moveToPrev(event, current, prevId) {
             if (event.key === 'Backspace' && current.value === '' && prevId) {
                 document.getElementById(prevId).focus();
             }

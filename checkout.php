@@ -21,39 +21,54 @@
         <div class="billing-section">
           <h2>Billing Information</h2>
           <form class="billing-form">
-            <div class="form-row">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group full-width">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="First & Last Name" required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                 <div class="form-group full-width">
+                  <label for="fullName">Email</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Email" required>
+                </div>
+              </div>
+               <div class="col-lg-6">
+                 <div class="form-group full-width">
+                  <label for="fullName">Mobile No.</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Mobile No." required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group full-width">
+                  <label for="address1">Address 1</label>
+                  <input type="text" id="address1" name="address1" placeholder="421, Dubai Main St." required>
+                </div>
+              </div>
+              <div class="col-lg-6">
               <div class="form-group full-width">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="First & Last Name" required>
+                  <label for="address2">Address 2</label>
+                  <input type="text" id="address2" name="address2" placeholder="Apartment, suite, etc. (optional)">
+                </div>
               </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="address1">Address 1</label>
-                <input type="text" id="address1" name="address1" placeholder="421, Dubai Main St." required>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" name="city" placeholder="City" required>
+                </div>
               </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="address2">Address 2</label>
-                <input type="text" id="address2" name="address2" placeholder="Apartment, suite, etc. (optional)">
-              </div>
-            </div>
-            
-            <div class="form-row three-col">
-              <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" placeholder="City" required>
-              </div>
-              <div class="form-group">
+              <div class="col-lg-4">
+                <div class="form-group">
                 <label for="state">State</label>
                  <input type="text" id="state" name="state" placeholder="State" required>
               </div>
-              <div class="form-group">
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
                 <label for="zipCode">Zip Code</label>
                 <input type="text" id="zipCode" name="zipCode" placeholder="Zip code" required>
+              </div>
               </div>
             </div>
           </form>
